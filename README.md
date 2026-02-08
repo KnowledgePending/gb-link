@@ -93,7 +93,22 @@ make secondary.gb
 - **primary.gb**: Simple send-only test (TX 0x00, 0xFF, 0xAA, 0x55)
 - **secondary.gb**: Bidirectional test showing both TX and RX values
 
-## Building the Pico Firmware
+## Pico Firmware Options
+
+### Option A: MicroPython (Easiest)
+
+1. Flash MicroPython to your Pico: https://micropython.org/download/rp2-pico/
+2. Copy [`pico/gb_link.py`](pico/gb_link.py) to your Pico as `main.py`
+3. Connect via serial terminal (115200 baud)
+
+```bash
+# Using mpremote
+mpremote cp pico/gb_link.py :main.py
+
+# Or use Thonny IDE to copy the file
+```
+
+### Option B: C SDK (More Robust)
 
 See [pico/README.md](pico/README.md) for detailed build instructions.
 
@@ -105,6 +120,17 @@ make
 ```
 
 Copy `gb_link.uf2` to your Pico.
+
+### Which to Choose?
+
+| Feature | MicroPython | C SDK |
+|---------|-------------|-------|
+| Setup difficulty | Easy | Medium |
+| Timing reliability | Good (~8kHz) | Excellent |
+| Customization | Quick iteration | Recompile needed |
+| Future PIO support | Limited | Full |
+
+For initial testing, **MicroPython is recommended**. If you experience timing issues or need higher speeds, switch to C.
 
 ## Testing
 

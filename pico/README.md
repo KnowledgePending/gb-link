@@ -2,6 +2,10 @@
 
 This firmware allows a Raspberry Pi Pico to communicate with a Game Boy/Game Boy Color via the link cable.
 
+Two versions are provided:
+- **`gb_link.py`** - MicroPython (easiest to get started)
+- **`gb_link.c`** - C SDK (more robust timing)
+
 ## Wiring
 
 Connect the cut link cable wires to the Pico via a 5V↔3.3V level shifter:
@@ -16,7 +20,26 @@ Connect the cut link cable wires to the Pico via a 5V↔3.3V level shifter:
 
 **Important**: Use bidirectional level shifters between the GB (5V) and Pico (3.3V)!
 
-## Building
+## Option A: MicroPython (Easiest)
+
+### Setup
+
+1. Download MicroPython for Pico: https://micropython.org/download/rp2-pico/
+2. Hold BOOTSEL, connect Pico via USB, copy the `.uf2` file
+3. Copy `gb_link.py` to the Pico as `main.py`:
+
+```bash
+# Using mpremote (pip install mpremote)
+mpremote cp gb_link.py :main.py
+
+# Or use Thonny IDE to copy the file
+```
+
+### Running
+
+The script runs automatically on boot. Connect via serial terminal to see output.
+
+## Option B: C SDK (More Robust)
 
 ### Prerequisites
 
